@@ -1,0 +1,48 @@
+details:
+    page_title: Sample Dashboard
+layout:
+    - row_1_of_3:
+        - col_1_of_2:
+            - tile_template: just_value
+              tile_id: shooting_accuracy
+              title: Shooting accuracy
+              classes:
+
+        - col_1_of_2:
+            - tile_template: line_chart
+              tile_id: hrv_line_chart
+              title: HRV
+              classes:
+
+    - row_1_of_3:
+
+            - col_1_of_2:
+                - tile_template: line_chart
+                  tile_id: speed_line_chart
+                  title: speed
+                  classes:
+
+            - col_1_of_2:
+                - tile_template: line_chart
+                  tile_id: bpm_line_chart
+                  title: BPM
+                  classes:
+
+    - row_1_of_3:
+        - col_1_of_3:
+            - tile_template: just_value
+              tile_id: hrv
+              title: HRV
+              classes:
+
+        - col_1_of_3:
+            - tile_template: just_value
+              tile_id: bpm
+              title: BPM
+              classes:
+
+        - col_1_of_3:
+            - tile_template: just_value
+              tile_id: speed
+              title: Speed
+              classes:
