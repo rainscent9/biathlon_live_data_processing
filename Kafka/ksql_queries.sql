@@ -116,3 +116,47 @@ WITH (KAFKA_TOPIC= 'gps_for_vis_s',
             speed_rolling_mean,
             not_moving
 from gps_processed_s emit changes;
+
+
+
+
+
+----------
+-- Arrays
+----------
+
+-- Topic hrv_data_forwarded:
+DROP TABLE IF EXISTS hrv_data_a1;
+CREATE TABLE IF NOT EXISTS hrv_data_a1
+  WITH (kafka_topic='hrv_data_a1',
+        value_format='JSON')
+AS SELECT session,
+        collect_list(hrv) as hrv_array,
+        collect_list(timestamp) as timestamp_array
+FROM hrv_data_s1
+GROUP BY session
+EMIT CHANGES;
+
+-- Topic hrv_data_forwarded:
+DROP TABLE IF EXISTS BPM_data_a1;
+CREATE TABLE IF NOT EXISTS BPM_data_a1
+  WITH (kafka_topic='hrv_bpm_data',
+        value_format='JSON')
+AS SELECT session,
+        collect_list(BPM) as BPM_array,
+        collect_list(timestamp) as timestamp_array
+FROM hrv_bpm_s
+GROUP BY session
+EMIT CHANGES;
+
+-- Topic hrv_data_forwarded:
+DROP TABLE IF EXISTS speed_data_a1;
+CREATE TABLE IF NOT EXISTS speed_data_a1
+  WITH (kafka_topic='speed_data_a1',
+        value_format='JSON')
+AS SELECT session,
+        collect_list(speed) as speed_array,
+        collect_list(timestamp) as timestamp_array
+FROM gps_processed_s
+GROUP BY session
+EMIT CHANGES;
